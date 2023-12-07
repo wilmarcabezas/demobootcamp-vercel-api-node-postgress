@@ -70,7 +70,7 @@ app.post('/students' , function(req, res){
     const insertar = `INSERT INTO students(id, name, lastname,notes) VALUES(${id}, '${name}', '${lastname}', '${notes}')`
     pool.query(insertar)
     .then(() => {        
-        res.status(201).send({message:'Registro Guardado!'})
+        res.status(201).send({id:id,name:name,lastname:lastname,notes:notes})
     })
     .catch(err => {
         res.status(502).send({message:'Vaya, parece que se ha producido un error'})
