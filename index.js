@@ -86,7 +86,7 @@ app.put('/students/:id', (req, res) => {
     const modificar = `UPDATE students SET name = '${name}', lastname='${lastname}', notes='${notes}' WHERE id = ${id} `
     pool.query(modificar)
     .then(() => {        
-        res.status(201).send('Registro Actualizado!')
+        res.status(201).send({message:'Registro Actualizado!'})
     })
     .catch(err => {
         res.status(502).send('Vaya, parece que se ha producido un error')
