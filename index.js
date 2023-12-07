@@ -18,7 +18,7 @@ const express = require('express');
 const { Pool } = require('pg');
 const app = express();
 app.use(express.json());
-app.use(apiKeyNice);
+//app.use(apiKeyNice);
 const port = 3000;
 
 const pool = new Pool({
