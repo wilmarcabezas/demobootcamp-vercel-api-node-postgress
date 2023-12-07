@@ -70,10 +70,10 @@ app.post('/students' , function(req, res){
     const insertar = `INSERT INTO students(id, name, lastname,notes) VALUES(${id}, '${name}', '${lastname}', '${notes}')`
     pool.query(insertar)
     .then(() => {        
-        res.status(201).send('Registro Guardado!')
+        res.status(201).send({message:'Registro Guardado!'})
     })
     .catch(err => {
-        res.status(502).send('Vaya, parece que se ha producido un error')
+        res.status(502).send({message:'Vaya, parece que se ha producido un error'})
         console.error(err);
     });
 })
@@ -89,7 +89,7 @@ app.put('/students/:id', (req, res) => {
         res.status(201).send({message:'Registro Actualizado!'})
     })
     .catch(err => {
-        res.status(502).send('Vaya, parece que se ha producido un error')
+        res.status(502).send({message:'Vaya, parece que se ha producido un error'})
         console.error(err);
     });
 });
@@ -99,10 +99,10 @@ app.delete('/students/:id', (req, res) => {
     const eliminar = `DELETE FROM students WHERE id=${id}`
     pool.query(eliminar)
     .then(() => {        
-        res.status(204).send('Borraste el Registro!')
+        res.status(204).send({message:'Borraste el Registro!'})
     })
     .catch(err => {
-        res.status(502).send('Vaya, parece que se ha producido un error')
+        res.status(502).send({message:'Vaya, parece que se ha producido un error'})
         console.error(err);
     }); 
 });
