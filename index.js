@@ -1,4 +1,5 @@
 require('dotenv').config()
+const cors = require('cors'); // Requerir CORS
 
 
 const API_KEY = process.env.API_KEY
@@ -17,6 +18,7 @@ const apiKeyNice = (req, res, next) => {
 const express = require('express');
 const { Pool } = require('pg');
 const app = express();
+app.use(cors());
 app.use(express.json());
 //app.use(apiKeyNice);
 const port = 3000;
