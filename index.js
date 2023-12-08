@@ -21,7 +21,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 //app.use(apiKeyNice);
-const port = 3000;
+const port = 5000;
 
 const pool = new Pool({
     user: 'default',
@@ -84,6 +84,7 @@ app.put('/students/:id', (req, res) => {
     const lastname = req.body.lastname
     const notes = req.body.notes
     const modificar = `UPDATE students SET name = '${name}', lastname='${lastname}', notes='${notes}' WHERE id = ${id} `
+    console.log(modificar)
     pool.query(modificar)
     .then(() => {        
         res.status(201).send({id:id,name:name,lastname:lastname,notes:notes})
@@ -96,16 +97,34 @@ app.put('/students/:id', (req, res) => {
 
 app.delete('/students/:id', (req, res) => {
     const id = req.params.id;
-    const eliminar = `DELETE FROM students WHERE id=${id}`
-    pool.query(eliminar)
-    .then(() => {        
-        res.status(204).send({message:'Borraste el Registro!'})
+    const querySelect = `SELECT * FROM students WHERE id=${id}`;
+
+    pool.query(querySelect)
+    .then(result => {
+        if (result.rows.length === 0) {
+            res.status(404).send({ message: 'Estudiante no encontrado' });
+        } else {
+            const studentToDelete = result.rows[0];
+            const queryDelete = `DELETE FROM students WHERE id=${id}`;
+
+            pool.query(queryDelete)
+            .then(() => {
+                res.status(200).send({ studentToDelete });
+            })
+            .catch(err => {
+                res.status(502).send({ message: 'Vaya, parece que se ha producido un error' });
+                console.error(err);
+            });
+        }
     })
     .catch(err => {
-        res.status(502).send({message:'Vaya, parece que se ha producido un error'})
+        res.status(502).send({ message: 'Vaya, parece que se ha producido un error' });
         console.error(err);
-    }); 
+    });
 });
+
+
+
 app.listen(port, function(){
     console.log('Welcome student, the server is now on')
 });
