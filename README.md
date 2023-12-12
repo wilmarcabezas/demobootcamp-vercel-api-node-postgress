@@ -1,7 +1,7 @@
 # GAME RACE CAR'S, VELOCITY RANDOM - ¡Experimenta la emoción de la carrera! 🏎️🏁
 
 ## JUEGO DE AUTOS
-### ¡Bienvenido a GAME RACE CAR'S, VELOCITY RANDOM! Este sencillo juego de carreras basado en la web presenta dos autos que corren a lo largo de una pista con velocidades aleatorias. Siente la emoción al iniciar la carrera y observa cómo los autos avanzan a toda velocidad por la pantalla.
+¡Bienvenido a GAME RACE CAR'S, VELOCITY RANDOM! Este sencillo juego de carreras basado en la web presenta dos autos que corren a lo largo de una pista con velocidades aleatorias. Siente la emoción al iniciar la carrera y observa cómo los autos avanzan a toda velocidad por la pantalla.
 
 Tabla de Contenidos
 
